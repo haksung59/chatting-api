@@ -13,15 +13,19 @@ public class CommonEntity {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-    @Column(name = "create_id")
-    private String createId;
+    @Column(name = "created_by")
+    private String createBy;
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
+    @Column(name = "updated_by")
+    private String updatedBy;
+
     @PrePersist
     protected void onCreate() {
         createdAt = LocalDateTime.now();
+        updatedAt = LocalDateTime.now();
     }
 
     @PreUpdate
