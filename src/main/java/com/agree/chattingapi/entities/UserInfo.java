@@ -7,7 +7,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "user_info")
-public class UserInfo extends CommonEntity{
+public class UserInfo extends CommonEntity {
 
     @Id
     @Column(name = "user_id", nullable = false, length = 15)
@@ -22,6 +22,9 @@ public class UserInfo extends CommonEntity{
     @Column(name = "birth", nullable = false, length = 6)
     private String birth;
 
+    @Column(name = "roles", nullable = false)
+    private String roles;
+
     @Column(name = "push_key")
     private String pushKey;
 
@@ -30,6 +33,15 @@ public class UserInfo extends CommonEntity{
         this.pw = pw;
         this.name = name;
         this.birth = birth;
+        this.roles = "USER";
+    }
+
+    public UserInfo(String id, String pw, String name, String birth, String roles) {
+        this.id = id;
+        this.pw = pw;
+        this.name = name;
+        this.birth = birth;
+        this.roles = roles;
     }
 
     public UserInfo() {}
@@ -50,6 +62,10 @@ public class UserInfo extends CommonEntity{
         return birth;
     }
 
+    public String getRoles() {
+        return roles;
+    }
+
     public void setId(String id) {
         this.id = id;
     }
@@ -64,6 +80,10 @@ public class UserInfo extends CommonEntity{
 
     public void setBirth(String birth) {
         this.birth = birth;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
     }
 
     public void setPushKey(String pushKey) {

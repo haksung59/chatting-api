@@ -36,7 +36,7 @@ public class UserService {
         boolean cnt = userRepository.existsById(id);
 
         if(cnt){
-            return "아이디가 존재합니다.";
+            return id + "는 이미 사용중입니다.";
         }else {
             return "사용 가능한 아이디입니다.";
         }
