@@ -23,7 +23,7 @@ public class UserInfo extends CommonEntity {
     private String birth;
 
     @Column(name = "roles", nullable = false)
-    private String roles;
+    private String roles = "USER";
 
     @Column(name = "push_key")
     private String pushKey;
@@ -33,7 +33,6 @@ public class UserInfo extends CommonEntity {
         this.pw = pw;
         this.name = name;
         this.birth = birth;
-        this.roles = "USER";
     }
 
     public UserInfo(String id, String pw, String name, String birth, String roles) {
@@ -50,40 +49,44 @@ public class UserInfo extends CommonEntity {
         return id;
     }
 
-    public String getPw() {
-        return pw;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getBirth() {
-        return birth;
-    }
-
-    public String getRoles() {
-        return roles;
-    }
-
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getPw() {
+        return pw;
     }
 
     public void setPw(String pw) {
         this.pw = pw;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getBirth() {
+        return birth;
     }
 
     public void setBirth(String birth) {
         this.birth = birth;
     }
 
+    public String getRoles() {
+        return roles;
+    }
+
     public void setRoles(String roles) {
         this.roles = roles;
+    }
+
+    public String getPushKey() {
+        return pushKey;
     }
 
     public void setPushKey(String pushKey) {

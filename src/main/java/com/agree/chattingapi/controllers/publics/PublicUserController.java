@@ -11,8 +11,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/public/user")
 public class PublicUserController {
 
+    private final UserService userService;
+
     @Autowired
-    UserService userService;
+    public PublicUserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @PostMapping("/join")
     public CommonResponse<UserInfo> join(@RequestBody UserInfo user){

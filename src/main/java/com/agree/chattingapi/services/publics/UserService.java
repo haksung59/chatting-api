@@ -1,5 +1,6 @@
 package com.agree.chattingapi.services.publics;
 
+import com.agree.chattingapi.conf.JwtUtils;
 import com.agree.chattingapi.dtos.user.LoginRequest;
 import com.agree.chattingapi.dtos.user.ModifyUserRequest;
 import com.agree.chattingapi.entities.UserInfo;
@@ -25,7 +26,8 @@ public class UserService {
         UserInfo findUser = userRepository.findById(request.getId()).get();
 
         if(request.getPw().equals(findUser.getPw())){
-            return "success";
+            String token = JwtUtils.generateToken(findUser.getId());
+            return token;
         }else {
             return "fail";
         }
