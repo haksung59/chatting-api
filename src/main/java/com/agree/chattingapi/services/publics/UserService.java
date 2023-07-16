@@ -1,19 +1,22 @@
 package com.agree.chattingapi.services.publics;
 
-import com.agree.chattingapi.conf.JwtUtils;
 import com.agree.chattingapi.dtos.user.LoginRequest;
 import com.agree.chattingapi.dtos.user.ModifyUserRequest;
 import com.agree.chattingapi.entities.UserInfo;
 import com.agree.chattingapi.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Service
 public class UserService {
 
-    @Autowired
-    UserRepository userRepository;
+    private final UserRepository userRepository;
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Transactional
     public UserInfo join(UserInfo userInfo){
@@ -22,15 +25,8 @@ public class UserService {
     }
 
     @Transactional
-    public String login(LoginRequest request){
-        UserInfo findUser = userRepository.findById(request.getId()).get();
-
-        if(request.getPw().equals(findUser.getPw())){
-            String token = JwtUtils.generateToken(findUser.getId());
-            return token;
-        }else {
-            return "fail";
-        }
+    public Optional<UserInfo> login(LoginRequest request){
+        return userRepository.findById(request.getId());
     }
 
     @Transactional

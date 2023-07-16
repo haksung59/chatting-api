@@ -22,6 +22,9 @@ public class UserInfo extends CommonEntity {
     @Column(name = "birth", nullable = false, length = 6)
     private String birth;
 
+    @Column(name = "status", nullable = false, length = 1)
+    private String status = "Y";
+
     @Column(name = "roles", nullable = false)
     private String roles = "USER";
 
@@ -79,6 +82,14 @@ public class UserInfo extends CommonEntity {
 
     public String getRoles() {
         return roles;
+    }
+
+    public void setStatus(String status){
+        this.status = status;
+    }
+
+    public String getStatus(){
+        return status;
     }
 
     public void setRoles(String roles) {

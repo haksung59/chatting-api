@@ -10,6 +10,8 @@ public class CommonResponse<T> {
 
     private T result;
 
+    public CommonResponse(){}
+
     public CommonResponse(@NotNull String code, String message, T result) {
         this.code = code;
         this.message = message;
