@@ -29,7 +29,7 @@ public class PrivateUserController {
         return new CommonResponse<>(userService.modifyPw(request));
     }
 
-    @PostMapping("/logout")
+    @GetMapping("/logout")
     public CommonResponse<String> logout(HttpServletResponse response){
         return new CommonResponse<>(userService.logout(response));
     }
