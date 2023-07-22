@@ -1,5 +1,6 @@
 package com.agree.chattingapi.conf;
 
+import com.agree.chattingapi.utils.JwtAuthorizationFilter;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,7 +10,9 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -27,12 +30,15 @@ public class SpringSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable().cors().disable()
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/public/**").permitAll()
-                        .requestMatchers("/private/**").hasRole("USER")
-                        .anyRequest().authenticated()
+                        .anyRequest()
+                        .permitAll()
                 )
-                .addFilterBefore(authenticationFilter(), CustomAuthenticationFilter.class)
+                .addFilterBefore(jwtAuthorizationFilter(), BasicAuthenticationFilter.class)
+                .sessionManagement((session) -> session
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                )
                 .formLogin(AbstractHttpConfigurer::disable)
+                .addFilterBefore(authenticationFilter(), CustomAuthenticationFilter.class)
                 .logout(withDefaults());
 
         return http.build();
@@ -66,6 +72,11 @@ public class SpringSecurityConfig {
     @Bean
     public CustomAuthFailureHandler customLoginFailureHandler() {
         return new CustomAuthFailureHandler();
+    }
+
+    @Bean
+    public JwtAuthorizationFilter jwtAuthorizationFilter() {
+        return new JwtAuthorizationFilter();
     }
 
 }

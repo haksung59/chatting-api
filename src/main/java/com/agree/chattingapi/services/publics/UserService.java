@@ -4,6 +4,9 @@ import com.agree.chattingapi.dtos.user.LoginRequest;
 import com.agree.chattingapi.dtos.user.ModifyUserRequest;
 import com.agree.chattingapi.entities.UserInfo;
 import com.agree.chattingapi.repositories.UserRepository;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,6 +41,18 @@ public class UserService {
         }else {
             return "사용 가능한 아이디입니다.";
         }
+    }
+
+    public String getCookie(HttpServletRequest request){
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("chatting-app")) {
+                    return cookie.getValue();
+                }
+            }
+        }
+        return null;
     }
 
     @Transactional
