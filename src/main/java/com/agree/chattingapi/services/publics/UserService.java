@@ -6,7 +6,10 @@ import com.agree.chattingapi.entities.UserInfo;
 import com.agree.chattingapi.repositories.UserRepository;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.parameters.P;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -66,6 +69,29 @@ public class UserService {
         } else {
             return "fail";
         }
+    }
+
+    @Transactional
+    public String modifyPw(ModifyUserRequest request){
+        UserInfo findUser = userRepository.findById(request.getId()).orElse(null);
+
+        if(findUser != null){
+            findUser.setPw(request.getPw());
+            return "success";
+        }else {
+            return "fail";
+        }
+    }
+
+    public String logout(HttpServletResponse response){
+        Cookie cookie = new Cookie("chatting-app", null);
+        cookie.setMaxAge(0);
+        cookie.setPath("/");
+        response.addCookie(cookie);
+
+        SecurityContextHolder.clearContext();
+
+        return "success";
     }
 
 }

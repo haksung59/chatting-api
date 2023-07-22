@@ -52,7 +52,8 @@ public class CustomAuthSuccessHandler extends SavedRequestAwareAuthenticationSuc
         Cookie cookie = new Cookie("chatting-app", value);
         cookie.setPath("/");
         cookie.setHttpOnly(true);
-        cookie.setMaxAge(86400 * 7); // 24 hours
+//        cookie.setSecure(true); //https
+        cookie.setMaxAge(86400 * 7); //1주일
         response.addCookie(cookie);
     }
 }
