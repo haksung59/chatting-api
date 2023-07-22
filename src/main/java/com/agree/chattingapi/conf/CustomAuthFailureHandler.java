@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.security.authentication.AuthenticationServiceException;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
@@ -19,7 +21,16 @@ public class CustomAuthFailureHandler implements AuthenticationFailureHandler {
         response.setContentType("application/json");
         PrintWriter printWriter = response.getWriter();
 
-        printWriter.print(new ObjectMapper().writeValueAsString(new CommonResponse("fail", "fail")));
+        if(exception instanceof BadCredentialsException){
+            printWriter.print(new ObjectMapper().writeValueAsString(new CommonResponse<>(
+                    exception.getMessage(), "fail")));
+        }else if(exception instanceof AuthenticationServiceException){
+            printWriter.print(new ObjectMapper().writeValueAsString(new CommonResponse<>(
+                    exception.getMessage(),"fail")));
+        }else {
+            printWriter.print(new ObjectMapper().writeValueAsString(new CommonResponse<>(
+                    "fail", "fail")));
+        }
         printWriter.flush();
         printWriter.close();
 

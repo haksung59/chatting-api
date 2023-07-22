@@ -1,13 +1,12 @@
 package com.agree.chattingapi.services.impls;
 
+import ch.qos.logback.classic.Logger;
 import com.agree.chattingapi.dtos.user.LoginRequest;
 import com.agree.chattingapi.dtos.user.UserDetailsDto;
-import com.agree.chattingapi.entities.UserInfo;
 import com.agree.chattingapi.services.publics.UserService;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -20,6 +19,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     private final UserService userService;
 
+    private Logger log;
     public UserDetailsServiceImpl(UserService userService) {
         this.userService = userService;
     }
@@ -31,13 +31,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if (id == null || id.equals("")) {
             return userService.login(request)
                     .map(u -> new UserDetailsDto(u, Collections.singleton(new SimpleGrantedAuthority(u.getId()))))
-                    .orElseThrow(() -> new AuthenticationServiceException(id));
-        }
-        // 비밀번호가 맞지 않는 경우
-        else {
+                    .orElseThrow(() -> new AuthenticationServiceException("Please enter your ID"));
+        }else {
             return userService.login(request)
                     .map(u -> new UserDetailsDto(u, Collections.singleton(new SimpleGrantedAuthority(u.getId()))))
-                    .orElseThrow(() -> new BadCredentialsException(id));
+                    .orElseThrow(() -> new BadCredentialsException(id + " is not registered"));
         }
     }
 }

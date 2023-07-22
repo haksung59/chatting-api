@@ -12,8 +12,6 @@ public class UserDetailsDto implements UserDetails {
     private Collection<? extends GrantedAuthority> authorities;
 
     public UserDetailsDto(UserInfo userInfo, Collection<? extends GrantedAuthority> authorities) {
-        System.out.println("----------------");
-        System.out.println(authorities);
         this.userInfo = userInfo;
         this.authorities = authorities;
     }
