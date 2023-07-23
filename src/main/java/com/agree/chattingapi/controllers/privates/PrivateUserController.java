@@ -1,6 +1,7 @@
 package com.agree.chattingapi.controllers.privates;
 
 import com.agree.chattingapi.dtos.user.ModifyUserRequest;
+import com.agree.chattingapi.entities.UserInfo;
 import com.agree.chattingapi.responses.CommonResponse;
 import com.agree.chattingapi.services.publics.UserService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,6 +18,11 @@ public class PrivateUserController {
     @Autowired
     public PrivateUserController(UserService userService) {
         this.userService = userService;
+    }
+
+    @GetMapping("/user")
+    public CommonResponse<UserInfo> getUser(HttpServletRequest request){
+        return new CommonResponse<>(userService.getUser(request));
     }
 
     @PutMapping("/user")
