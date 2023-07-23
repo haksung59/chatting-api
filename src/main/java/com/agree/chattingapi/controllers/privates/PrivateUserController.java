@@ -3,7 +3,7 @@ package com.agree.chattingapi.controllers.privates;
 import com.agree.chattingapi.dtos.user.ModifyUserRequest;
 import com.agree.chattingapi.entities.UserInfo;
 import com.agree.chattingapi.responses.CommonResponse;
-import com.agree.chattingapi.services.publics.UserService;
+import com.agree.chattingapi.services.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;

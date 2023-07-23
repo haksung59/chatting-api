@@ -4,7 +4,7 @@ import ch.qos.logback.classic.Logger;
 import com.agree.chattingapi.dtos.user.UserDetailsDto;
 import com.agree.chattingapi.entities.UserInfo;
 import com.agree.chattingapi.responses.CommonResponse;
-import com.agree.chattingapi.services.publics.TokenService;
+import com.agree.chattingapi.services.TokenService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;

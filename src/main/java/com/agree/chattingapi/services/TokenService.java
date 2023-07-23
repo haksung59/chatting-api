@@ -1,4 +1,4 @@
-package com.agree.chattingapi.services.publics;
+package com.agree.chattingapi.services;
 
 import com.agree.chattingapi.entities.TokenInfo;
 import com.agree.chattingapi.entities.UserInfo;

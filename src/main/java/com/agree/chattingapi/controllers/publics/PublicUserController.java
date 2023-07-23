@@ -2,7 +2,7 @@ package com.agree.chattingapi.controllers.publics;
 
 import com.agree.chattingapi.entities.UserInfo;
 import com.agree.chattingapi.responses.CommonResponse;
-import com.agree.chattingapi.services.publics.UserService;
+import com.agree.chattingapi.services.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

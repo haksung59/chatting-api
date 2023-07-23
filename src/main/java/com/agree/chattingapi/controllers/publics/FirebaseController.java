@@ -1,15 +1,10 @@
 package com.agree.chattingapi.controllers.publics;
 
 import com.agree.chattingapi.dtos.user.FirebaseRequest;
-import com.agree.chattingapi.entities.UserInfo;
 import com.agree.chattingapi.repositories.UserRepository;
 import com.agree.chattingapi.responses.CommonResponse;
-import com.agree.chattingapi.services.publics.FirebaseService;
-import com.google.firebase.messaging.FirebaseMessaging;
+import com.agree.chattingapi.services.FirebaseService;
 import com.google.firebase.messaging.FirebaseMessagingException;
-import com.google.firebase.messaging.Message;
-import com.google.firebase.messaging.Notification;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;

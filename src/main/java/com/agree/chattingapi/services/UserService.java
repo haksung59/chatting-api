@@ -1,4 +1,4 @@
-package com.agree.chattingapi.services.publics;
+package com.agree.chattingapi.services;
 
 import ch.qos.logback.classic.Logger;
 import com.agree.chattingapi.conf.AuthConstants;

@@ -3,7 +3,7 @@ package com.agree.chattingapi.services.impls;
 import ch.qos.logback.classic.Logger;
 import com.agree.chattingapi.dtos.user.LoginRequest;
 import com.agree.chattingapi.dtos.user.UserDetailsDto;
-import com.agree.chattingapi.services.publics.UserService;
+import com.agree.chattingapi.services.UserService;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

@@ -7,7 +7,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "token_info")
-public class TokenInfo {
+public class TokenInfo extends CommonEntity{
 
     @Id
     @Column(name = "user_id", nullable = false, length = 15)
