@@ -7,6 +7,8 @@ public class ModifyUserRequest {
     private String birth;
     private String pw;
 
+    private String pushKey;
+
     public String getId() {
         return id;
     }
@@ -19,5 +21,11 @@ public class ModifyUserRequest {
         return birth;
     }
 
-    public String getPw(){return pw;}
+    public String getPw(){
+        return pw;
+    }
+
+    public String getPushKey(){
+        return pushKey;
+    }
 }

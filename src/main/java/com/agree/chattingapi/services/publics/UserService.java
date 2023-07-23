@@ -2,7 +2,6 @@ package com.agree.chattingapi.services.publics;
 
 import ch.qos.logback.classic.Logger;
 import com.agree.chattingapi.conf.AuthConstants;
-import com.agree.chattingapi.conf.CustomAuthSuccessHandler;
 import com.agree.chattingapi.dtos.user.LoginRequest;
 import com.agree.chattingapi.dtos.user.ModifyUserRequest;
 import com.agree.chattingapi.entities.UserInfo;
@@ -92,6 +91,18 @@ public class UserService {
 
         if(findUser != null){
             findUser.setPw(request.getPw());
+            return "success";
+        }else {
+            return "fail";
+        }
+    }
+
+    @Transactional
+    public String modifyPushKey(ModifyUserRequest request){
+        UserInfo findUser = userRepository.findById(request.getId()).orElse(null);
+
+        if(findUser != null){
+            findUser.setPw(request.getPushKey());
             return "success";
         }else {
             return "fail";
