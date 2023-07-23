@@ -102,7 +102,7 @@ public class UserService {
         UserInfo findUser = userRepository.findById(request.getId()).orElse(null);
 
         if(findUser != null){
-            findUser.setPw(request.getPushKey());
+            findUser.setPushKey(request.getPushKey());
             return "success";
         }else {
             return "fail";

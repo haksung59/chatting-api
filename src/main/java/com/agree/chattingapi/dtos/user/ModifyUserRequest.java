@@ -6,7 +6,6 @@ public class ModifyUserRequest {
     private String name;
     private String birth;
     private String pw;
-
     private String pushKey;
 
     public String getId() {

@@ -35,7 +35,7 @@ public class PrivateUserController {
         return new CommonResponse<>(userService.modifyPw(request));
     }
 
-    @PutMapping("/user/push-key")
+    @PutMapping("/firebase/push-key")
     public CommonResponse<String> modifyPushKey(@RequestBody ModifyUserRequest request){
         return new CommonResponse<>(userService.modifyPushKey(request));
     }
